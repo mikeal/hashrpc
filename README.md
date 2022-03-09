@@ -10,7 +10,7 @@ There are only three message types.
 
 All messages, including control messages, are hash addressed.
 
-All hash addresses are either multihashes or CIDs.
+All hash addresses are CIDs.
 
 # Protocol
 
@@ -22,24 +22,24 @@ Single byte Uint8 for each message type:
 
 This specification does not define what a control message is or how it is used, that's up to the
 application. Nor does this specification define any size limitation on blocks, a "block" could be an entire
-CAR file reqested by its multihash.
+CAR file reqested by its CID (once we have a spec for CAR CIDs).
 
 All message types are bi-directional, any node can send any message type at any time.
 
 ## get block
 
 ```
-[ 1, length, multihash || CID ]
+[ 1, length, CID ]
 ```
 
 ## send block
 
 ```
-[ 2, (multihash || CID)Length, blockLength, multihash || CID, block ]
+[ 2, CIDLength, blockLength, CID, block ]
 ```
 
 ## control
 
 ```
-[ 3, (multihash || CID)Length, blockLength, multihash || CID, block ]
+[ 3, CIDLength, blockLength, CID, block ]
 ```
